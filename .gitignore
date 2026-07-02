@@ -43,5 +43,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-/lib/day3/99_CheckBox분리.dart
