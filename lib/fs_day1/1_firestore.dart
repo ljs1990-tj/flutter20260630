@@ -47,13 +47,19 @@ class MyApp extends StatelessWidget {
 
     Future<void> getUserList() async{
       // final snapshot =  await fs.collection("users").get();
-      final snapshot =  
+      final snapshot =
         await fs.collection("users")
                   // .where("age", isGreaterThan: 20) // age > 20
-                  .where("age", isGreaterThanOrEqualTo: 25) // age >= 25
+                  .where("age", isGreaterThanOrEqualTo: 20) // age >= 25
                   // .orderBy("age") // age 필드 기준으로 오름차순
                   .orderBy("age", descending: true) // age 필드 기준으로 내림차순
                   .get();
+        // snapshot.docs
+        for(var doc in snapshot.docs){
+          Map<String, dynamic> user = doc.data();
+          print("문서 ID : ${doc.id}, 이름 : ${user["name"]}, 나이 : ${user["age"]}");
+        }
+
     }
 
 
@@ -66,6 +72,10 @@ class MyApp extends StatelessWidget {
               ElevatedButton(
                   onPressed: addUser, 
                   child: Text("추가!")
+              ),
+              ElevatedButton(
+                  onPressed: getUserList,
+                  child: Text("읽기!")
               )
             ],
           ),
