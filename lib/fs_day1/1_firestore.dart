@@ -59,7 +59,17 @@ class MyApp extends StatelessWidget {
           Map<String, dynamic> user = doc.data();
           print("문서 ID : ${doc.id}, 이름 : ${user["name"]}, 나이 : ${user["age"]}");
         }
+    }
 
+    Future<void> updateUser() async{
+      fs.collection("users").doc("PkBNBrVKRD66IPbVbp5g").update({
+        "name" : "박영희",
+        "age" : 25
+      });
+    }
+
+    Future<void> deleteUser() async{
+      await fs.collection("users").doc("7DZrcdF7SznZS1wQigIc").delete();
     }
 
 
@@ -76,6 +86,14 @@ class MyApp extends StatelessWidget {
               ElevatedButton(
                   onPressed: getUserList,
                   child: Text("읽기!")
+              ),
+              ElevatedButton(
+                  onPressed: updateUser,
+                  child: Text("수정!")
+              ),
+              ElevatedButton(
+                  onPressed: deleteUser,
+                  child: Text("삭제!")
               )
             ],
           ),
