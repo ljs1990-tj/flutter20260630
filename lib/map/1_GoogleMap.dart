@@ -33,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
           });
         },
         initialCameraPosition: CameraPosition(
-          target: LatLng(37.42796133580664, -122.085749655962),
+          target: LatLng(37.491064, 126.720514),
           zoom: 14.0,
         ),
       ),
