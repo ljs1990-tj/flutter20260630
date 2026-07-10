@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'ProductEdit.dart';
+
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
 
@@ -81,11 +83,20 @@ class _ProductListState extends State<ProductList> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ProductEdit(docId: doc.id),
+                                ),
+                              );
+                            },
                             icon: Icon(Icons.edit)
                         ),
                         IconButton(
-                            onPressed: (){},
+                            onPressed: () async{
+                              await fs.collection("Product").doc(doc.id).delete();
+                            },
                             icon: Icon(Icons.delete, color: Colors.red[500],)
                         )
                       ],
